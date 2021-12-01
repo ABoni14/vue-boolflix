@@ -1,11 +1,17 @@
 <template>
   <header>
     <h1>BOOLFLIX</h1>
-    <input 
-    v-model="searchBar"
-    @keyup.enter="search"
-    type="text" 
-    placeholder="Cerca il film">
+    <div>
+      <button
+      @click="$emit('search', searchBar)"
+      >CERCA</button>
+      <input 
+      v-model="searchBar"
+      @keyup.enter="search"
+      type="text" 
+      placeholder="Cerca il film">
+    </div>
+    
   </header>
 </template>
 
@@ -43,9 +49,18 @@ header{
   h1{
     color: red;
   }
-  input{
+  div{
+    display: flex;
+    align-items: center;
+    input{
     font-size: 20px;
     padding: 15px 30px;
+    }
+    button{
+      margin-right: 20px;
+      padding: 15px 30px;
+    }
   }
+  
 }
 </style>
