@@ -3,7 +3,7 @@
     <div class="container">
       <ul class="list">
         <li
-        v-for="(film, index) in films"
+        v-for="(film, index) in searchToMain"
         :key="index"
         >
           <h2>{{film.title}}</h2>
@@ -17,42 +17,19 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   name: "Main",
 
   data(){
     return{
-      films: []
+      string: ""
     }
   },
 
   props:{
-    searchToMain: String
-  },
-
-  methods:{
-    getApi(){
-      axios.get("https://api.themoviedb.org/3/search/movie", {
-        params:{
-          api_key: "175c5ba4ca5c3e6fc669aa56a7f621e0",
-          query : "terminator"
-        }
-      })
-        .then( r => {
-          this.films = r.data.results;
-          console.log(r);
-        })
-        .catch( e => {
-          console.log(e);
-        });
-    },
-  },
-
-   mounted(){
-      this.getApi()
-    }
+    searchToMain: Array
+  }
 }
 </script>
 
@@ -62,6 +39,7 @@ export default {
 main{
   min-height: calc(100vh - 100px);
   background-color: grey;
+  padding: 30px 0;
   .list{
     display: flex;
     flex-wrap: wrap;
@@ -69,7 +47,7 @@ main{
     li{
       margin: 10px;
       background-color: white;
-      width: calc(100% / 5);
+      width: calc(100% / 5 - 20px);
       padding: 20px;
     }
   }

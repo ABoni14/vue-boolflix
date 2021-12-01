@@ -3,7 +3,7 @@
     <h1>BOOLFLIX</h1>
     <input 
     v-model="searchBar"
-    @keyup.enter="$emit('search', search)"
+    @keyup.enter="search"
     type="text" 
     placeholder="Cerca il film">
   </header>
@@ -19,10 +19,15 @@ export default {
     }
   },
 
-  computed:{
+  methods:{
     search(){
-      return this.searchBar;
+      this.$emit("search", this.searchBar);
+      this.searchBar = "";
     }
+  },
+
+  mounted(){
+    this.search()
   }
 }
 </script>
