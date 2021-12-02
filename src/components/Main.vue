@@ -50,7 +50,7 @@ export default {
 
 main{
   min-height: calc(100vh - 100px);
-  background-color: grey;
+  background-image: linear-gradient(grey, lightgrey);
   padding: 30px 0;
   .contain.card{
     display: flex;

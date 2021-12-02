@@ -24,6 +24,8 @@
       <h4 
       v-else-if="films.original_language === 'gb'"><country-flag country='gb' size='normal'/></h4>
       <h4 
+      v-else-if="films.original_language === 'es'"><country-flag country='es' size='normal'/></h4>
+      <h4 
       v-else>{{films.original_language}}</h4>
 
       <p
@@ -63,7 +65,7 @@ props:{
   display: inline-block;
   margin: 10px;
   background-color: rgb(71, 71, 71);
-  width: calc(100% / 5 - 20px);
+  width: calc(100% / 4 - 20px);
 }
 
 .flip-card-inner {
@@ -87,7 +89,7 @@ props:{
   backface-visibility: hidden;
   img{
     overflow: hidden;
-    object-fit: cover;
+    object-fit: conver;
     height: 100%;
     width: 100%;
   }

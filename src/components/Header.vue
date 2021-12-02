@@ -41,7 +41,7 @@ export default {
 <style lang="scss">
 header{
   height: 100px;
-  background-color: black;
+  background-image: linear-gradient(black, grey);
   display: flex;
   justify-content: space-between;
   align-items: center;
