@@ -28,7 +28,7 @@ export default {
   methods:{
     search(){
       this.$emit("search", this.searchBar);
-      this.searchBar = "";
+      // this.searchBar = "";
     }
   },
 

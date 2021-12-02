@@ -5,35 +5,41 @@
       <img 
       v-if="films.poster_path != null"
       :src="'http://image.tmdb.org/t/p/w342' + films.poster_path" alt="">
-      <h3 
-      v-else class="no-img">Nessuna foto disponibile</h3>
+      <div v-else class="no-img">
+          <h3 class="title" v-if="films.name">{{films.name}}</h3>
+          <h3 class="title" v-else>{{films.title}}</h3>
+          <h3 class="no-photo">Nessuna foto disponibile</h3>
+      </div>
     </div>
     <div class="flip-card-back">
-      <h2 v-if="films.name">{{films.name}}</h2>
-      <h2 v-else>{{films.title}}</h2>
+      <h2 v-if="films.name">Title: {{films.name}}</h2>
+      <h2 v-else>Title: {{films.title}}</h2>
 
-      <h3 v-if="films.original_name">{{films.original_name}}</h3>
-      <h3 v-else>{{films.original_title}}</h3>
+      <h3 v-if="films.original_name">Original title: {{films.original_name}}</h3>
+      <h3 v-else>Original title: {{films.original_title}}</h3>
 
       <h4 
-      v-if="films.original_language === 'en'"><country-flag country='us' size='normal'/></h4>
+      v-if="films.original_language === 'en'">Language: <country-flag country='us' size='normal'/></h4>
       <h4 
-      v-else-if="films.original_language === 'it'"><country-flag country='it' size='normal'/></h4>
+      v-else-if="films.original_language === 'it'">Language: <country-flag country='it' size='normal'/></h4>
       <h4 
-      v-else-if="films.original_language === 'cn'"><country-flag country='cn' size='normal'/></h4>
+      v-else-if="films.original_language === 'cn'">Language: <country-flag country='cn' size='normal'/></h4>
       <h4 
-      v-else-if="films.original_language === 'gb'"><country-flag country='gb' size='normal'/></h4>
+      v-else-if="films.original_language === 'gb'">Language: <country-flag country='gb' size='normal'/></h4>
       <h4 
-      v-else-if="films.original_language === 'es'"><country-flag country='es' size='normal'/></h4>
+      v-else-if="films.original_language === 'es'">Language: <country-flag country='es' size='normal'/></h4>
       <h4 
-      v-else>{{films.original_language}}</h4>
-
-      <p
-      v-if="films.vote_average != null"
-      >{{films.vote_average}}</p>
-      <p v-else>
-        Voto: NN
-      </p>
+      v-else>Language: {{films.original_language}}</h4>
+      <h4 v-if="films.vote_average != 0">
+        Vote: <i v-for="index in Math.floor(films.vote_average / 2)" :key="index" class="fas fa-star"></i>
+      </h4>
+      <h4 v-else>
+        Vote: N/N
+      </h4>
+      <h4 v-if="films.overview !== ''">
+        Overview: {{films.overview}}
+      </h4>
+      <h4 v-else>N/N</h4>
     </div>
   </div>
 </div>
@@ -51,7 +57,7 @@ components:{
 
 props:{
   films: Object
-}
+},
 }
 </script>
 
@@ -94,7 +100,19 @@ props:{
     width: 100%;
   }
   .no-img{
-    line-height: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .title{
+      margin-bottom: 30px;
+      font-size: 25px;
+    }
+    .no-photo{
+      font-size: 15px;
+      color: rgb(19, 19, 19);
+    }
   }
 }
 
@@ -107,5 +125,18 @@ props:{
   background-color: black;
   color: white;
   transform: rotateY(180deg);
+  text-align: left;
+  padding: 5px;
+  overflow: auto;
+  h2{
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  h3{
+    margin-bottom: 15px;
+  }
+  h4{
+    margin-top: 20px;
+  }
 }
 </style>

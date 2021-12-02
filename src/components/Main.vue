@@ -1,22 +1,32 @@
 <template>
   <main>
     <div class="container">
-      <div class="contain-card">
-        <h2>FILM</h2>
-        <Card 
-        v-for="(film, index) in searchToMain"
-        :key="index"
-        :films="film"
-        />
+      <div class="errorSearch"
+      v-if="searchToMain.length <= 0 && seriesMain.length <= 0"
+      >
+        <h2 class="title">CERCA QUALCOSA</h2>
       </div>
 
-      <div class="contain-card">
-        <h2>SERIE TV</h2>
-        <Card 
-        v-for="(serie, index) in seriesMain"
-        :key="index"
-        :films="serie"
-        />
+      <div v-else class="contain">
+        <div 
+        class="contain-card"
+        >
+          <h2 class="title">FILM</h2>
+          <Card 
+          v-for="(film, index) in searchToMain"
+          :key="index"
+          :films="film"
+          />
+        </div>
+
+        <div class="contain-card">
+          <h2 class="title">SERIE TV</h2>
+          <Card 
+          v-for="(serie, index) in seriesMain"
+          :key="index"
+          :films="serie"
+          />
+        </div>
       </div>
     </div>
   </main>
@@ -51,7 +61,7 @@ export default {
 main{
   min-height: calc(100vh - 100px);
   background-image: linear-gradient(grey, lightgrey);
-  h2{
+  .title{
     padding-top: 40px;
     font-size: 45px;
   }
