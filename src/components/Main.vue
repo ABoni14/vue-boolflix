@@ -51,10 +51,9 @@ export default {
 main{
   min-height: calc(100vh - 100px);
   background-image: linear-gradient(grey, lightgrey);
-  padding: 30px 0;
-  .contain.card{
-    display: flex;
-    flex-wrap: wrap;
+  h2{
+    padding-top: 40px;
+    font-size: 45px;
   }
 }
 
