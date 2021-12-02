@@ -5,6 +5,7 @@
     />
     <Main 
       :searchToMain="search"
+      :seriesMain="searchSeries"
     />
   </div>
 </template>
@@ -26,16 +27,19 @@ export default {
   data(){
     return{
       searchFilm: "",
-      search: []
+      search: [],
+      films: "movie",
+      searchSeries: []
     }
   },
 
   methods:{
     getSearch(film){
       this.searchFilm = film;
-      axios.get("https://api.themoviedb.org/3/search/movie", {
+      axios.get("https://api.themoviedb.org/3/search/" + this.films, {
         params:{
           api_key: "175c5ba4ca5c3e6fc669aa56a7f621e0",
+          language: "it-IT",
           query : this.searchFilm
         }
       })
@@ -46,6 +50,24 @@ export default {
         .catch( e => {
           console.log(e);
         });
+
+      this.films= "tv";
+      axios.get("https://api.themoviedb.org/3/search/" + this.films, {
+        params:{
+          api_key: "175c5ba4ca5c3e6fc669aa56a7f621e0",
+          language: "it-IT",
+          query : this.searchFilm
+        }
+      })
+        .then( r => {
+          this.search = r.data.results;
+          console.log(r);
+        })
+        .catch( e => {
+          console.log(e);
+        });
+
+        this.films = "movie"
     },
     
   }
