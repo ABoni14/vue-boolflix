@@ -19,7 +19,9 @@
           />
         </div>
 
-        <div class="contain-card">
+        <div 
+        v-if="seriesMain != []"
+        class="contain-card">
           <h2 class="title">SERIE TV</h2>
           <Card 
           v-for="(serie, index) in seriesMain"

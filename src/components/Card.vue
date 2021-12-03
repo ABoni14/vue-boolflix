@@ -12,34 +12,41 @@
       </div>
     </div>
     <div class="flip-card-back">
-      <h2 v-if="films.name">Title: {{films.name}}</h2>
-      <h2 v-else>Title: {{films.title}}</h2>
+      <h4 v-if="films.name"><strong>Title: </strong>{{films.name}}</h4>
+      <h4 v-else><strong>Title: </strong>{{films.title}}</h4>
 
-      <h3 v-if="films.original_name">Original title: {{films.original_name}}</h3>
-      <h3 v-else>Original title: {{films.original_title}}</h3>
+      <h4 v-if="films.original_name"><strong>Original title: </strong>{{films.original_name}}</h4>
+      <h4 v-else><strong>Original title: </strong>{{films.original_title}}</h4>
 
       <h4 
-      v-if="films.original_language === 'en'">Language: <country-flag country='us' size='normal'/></h4>
+      v-if="films.original_language === 'en'"><strong>Language: </strong><country-flag country='us' size='normal'/></h4>
       <h4 
-      v-else-if="films.original_language === 'it'">Language: <country-flag country='it' size='normal'/></h4>
+      v-else-if="films.original_language === 'it'"><strong>Language: </strong><country-flag country='it' size='normal'/></h4>
       <h4 
-      v-else-if="films.original_language === 'cn'">Language: <country-flag country='cn' size='normal'/></h4>
+      v-else-if="films.original_language === 'cn'"><strong>Language: </strong><country-flag country='cn' size='normal'/></h4>
       <h4 
-      v-else-if="films.original_language === 'gb'">Language: <country-flag country='gb' size='normal'/></h4>
+      v-else-if="films.original_language === 'gb'"><strong>Language: </strong><country-flag country='gb' size='normal'/></h4>
       <h4 
-      v-else-if="films.original_language === 'es'">Language: <country-flag country='es' size='normal'/></h4>
+      v-else-if="films.original_language === 'es'"><strong>Language: </strong><country-flag country='es' size='normal'/></h4>
       <h4 
-      v-else>Language: {{films.original_language}}</h4>
-      <h4 v-if="films.vote_average != 0">
-        Vote: <i v-for="index in Math.floor(films.vote_average / 2)" :key="index" class="fas fa-star"></i>
+      v-else><strong>Language: </strong>{{films.original_language}}</h4>
+      <h4 v-if="films.vote_average != number">
+        <strong>Vote: </strong>
+        <i 
+        v-for="(intem, index) in 5" 
+        :key="index" 
+        class="fa-star"
+        :class="index < Math.round(films.vote_average/2) ? 'fas' : 'far'"
+        >
+        </i>
       </h4>
       <h4 v-else>
-        Vote: N/N
+        <strong>Vote: </strong>N/N
       </h4>
-      <h4 v-if="films.overview !== ''">
-        Overview: {{films.overview}}
+      <h4 v-if="films.overview != ''">
+        <strong>Overview: </strong>{{films.overview}}
       </h4>
-      <h4 v-else>N/N</h4>
+      <h4 v-else><strong>Overview: </strong> N/N</h4>
     </div>
   </div>
 </div>
@@ -100,7 +107,7 @@ props:{
     width: 100%;
   }
   .no-img{
-    height: 500px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -128,15 +135,15 @@ props:{
   text-align: left;
   padding: 5px;
   overflow: auto;
-  h2{
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
   h3{
     margin-bottom: 15px;
   }
   h4{
-    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: normal;
+    i{
+      color: yellow;
+    }
   }
 }
 </style>
